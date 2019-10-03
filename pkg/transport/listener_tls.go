@@ -96,6 +96,7 @@ func (l *tlsListener) Accept() (net.Conn, error) {
 
 func checkSAN(ctx context.Context, tlsConn *tls.Conn) error {
 	st := tlsConn.ConnectionState()
+	fmt.Printf("########### len: %v\n", len(st.PeerCertificates))
 	if certs := st.PeerCertificates; len(certs) > 0 {
 		addr := tlsConn.RemoteAddr().String()
 		return checkCertSAN(ctx, certs[0], addr)

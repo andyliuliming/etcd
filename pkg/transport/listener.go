@@ -156,6 +156,7 @@ func SelfCert(lg *zap.Logger, dirpath string, hosts []string, additionalUsages .
 	for _, host := range hosts {
 		h, _, _ := net.SplitHostPort(host)
 		if ip := net.ParseIP(h); ip != nil {
+			fmt.Printf("######1 %v\n", ip)
 			tmpl.IPAddresses = append(tmpl.IPAddresses, ip)
 		} else {
 			tmpl.DNSNames = append(tmpl.DNSNames, h)
